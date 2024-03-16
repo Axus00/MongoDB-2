@@ -243,31 +243,67 @@ db.usersInfo.updateMany(
     {$inc: {salary: 0.10}}
 );
 
-db.usersInfo.count();
-
 
 
 //Cambiar la ciudad de residencia de los usuarios que actualmente viven en "New York" a "Los Ángeles".
 db.usersInfo.updateMany({
-    residencia: {$eq: "New York"},
-    Set: {residencia: {$eq: "Los Ángeles"}}
+    residencia: {"New York"}
+    {$set: {residencia: "Los Ángeles"}}
 });
 
 //Agregar el correo electrónico "nuevo@riwi.com" al usuario con nombre "Juan" y apellido "Perez".
+db.usersInfo2.updateOne(
+    {$and: [
+        {name: "Juan"},
+        {lastName: "Perez"}
+    ]},  
+    {$set: {email: "nuevo@riwi.com"}}
+);
 
 //Actualizar la edad del usuario con correo electrónico "ejemplo@riwi.es" a 35 años.
+db.usersInfo2.updateOne(
+    {email: "ejemplo@riwi.es"},
+    {$set: {age: 35}}
+);
 
 //Cambiar el país de residencia de los usuarios que son de "Mexico" a "Canada".
+db.usersInfo2.updateOne(
+    {residencia: "Mexico"},
+    {$set: {resizeTo: "Canada"}}
+);
 
 //Aumentar la altura de todos los usuarios en 5 centímetros.
+db.usersInfo2.updateOne(
+    {}, 
+    {$set: {$inc: {height: 5}}}
+);
 
 //Cambiar el apellido del usuario con correo electrónico "otro@riwi.net" a "González".
+db.usersInfo2.updateOne(
+    {email: "otro@riwi.es"},
+    {$set: {lastName: "González"}}
+);
 
 //Actualizar el peso del usuario con nombre "Maria" a 140 libras.
+db.usersInfo2.updateOne(
+    {name: "Maria"},
+    {$set: {weight: 140}}
+);
 
 //Incrementar el salario de todos los usuarios que son de "Estados Unidos" en un 15%.
+db.usersInfo2.updateOne(
+    {country: "Estados Unidos"},
+    {$mul: {salary: 1.15}}
+);
+
 
 //Actualizar el correo electrónico del usuario con nombre "Pedro" a "nuevo_correo@riwi.co".
+db.usersInfo2.updateOne(
+    {name: "Andrei"},
+    {$set: {email: "nuevo_correo@riwi.co"}}
+);
+
+db.usersInfo2.find();
 
 //Cambiar la edad de todos los usuarios menores de 30 años a 30 años.
 
