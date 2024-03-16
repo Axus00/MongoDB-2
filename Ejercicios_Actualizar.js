@@ -306,23 +306,64 @@ db.usersInfo2.updateOne(
 db.usersInfo2.find();
 
 //Cambiar la edad de todos los usuarios menores de 30 años a 30 años.
+db.usersInfo2.updateOne(
+  {},
+  {age: {$lt: 30}},
+  {$set: {age: 30}}
+);
 
 //Incrementar el salario de los usuarios que tienen un salario inferior a 3000 dólares en un 20%.
+db.usersInfo2.updateOne(
+    {salary: {$lt: 3000}},
+    {$mul: {salary: 1.20}}
+);
 
 //Actualizar la ciudad de residencia de todos los usuarios que actualmente viven en "Bogotá" a "Medellín".
+db.usersInfo2.updateOne(
+  {residencia: "Bogota"},
+  {$set: {residencia: "Medellín"}}
+);
 
 //Cambiar el país de residencia de los usuarios con un salario superior a 5000 dólares a "Australia".
+db.usersInfo2.updateOne(
+  {salary: {$gt: 5000}},
+  {$set: {country: "Australia"}}
+);
 
 //Reducir la edad de todos los usuarios que tienen más de 50 años en 5 años.
+db.usersInfo2.updateOne(
+  {age: {$gt: 50}},
+  {$inc: {age: -5}}
+);
 
 //Actualizar el peso de los usuarios que pesan más de 200 libras a 180 libras.
+db.usersInfo2.updateOne(
+  {weight: {$gt: 200}},
+  {$set: {weight: 180}}
+);
 
 //Incrementar el salario de los usuarios que viven en "London" en un 25%.
+db.usersInfo2.updateOne(
+  {residencia: "London"},
+  {$mul: {salary: 1.25}}
+);
 
 //Cambiar el apellido de los usuarios con un salario superior a 4000 dólares a "Smith".
+db.usersInfo2.updateOne(
+  {salary: {$gt: 4000}},
+  {$set: {lastName: "Smith"}}
+);
 
 //Actualizar el correo electrónico de todos los usuarios cuyo nombre empiece por "A" a "nuevo@riwi.es".
+db.usersInfo2.updateOne(
+  {name: {$regex: /^A/}},
+  {$set: {email: "nuevo@riwi.es"}}
+);
 
 //Cambiar la ciudad de residencia de los usuarios con una altura inferior a 160 centímetros a "París".
+db.usersInfo2.updateOne(
+  {height: {$lt: 160}},
+  {$set: {residencia: "París"}}
+);
 
 
