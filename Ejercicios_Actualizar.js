@@ -2,7 +2,7 @@
 db.createCollection('usersInfo2');
 
 //Información usuarios
-db.usersInfo.insertMany([
+db.usersInfo2.insertMany([
     {
         name: "Fernando",
         lastName: "Gómez",
@@ -28,7 +28,7 @@ db.usersInfo.insertMany([
     {
       name: "Sophia",
       lastName: "Johnson",
-      age: 29,
+      age: 51,
       height: 165,
       weight: 185,
       country: "United States",
@@ -39,7 +39,7 @@ db.usersInfo.insertMany([
     {
       name: "Luis",
       lastName: "Martinez",
-      age: 35,
+      age: 55,
       height: 180,
       weight: 100,
       country: "France",
@@ -75,15 +75,15 @@ db.usersInfo.insertMany([
       age: 30,
       height: 175,
       weight: 200,
-      country: "Romania",
-      residencia: "Bucharest",
+      country: "Estados Unidos",
+      residencia: "New York",
       salary: 5000,
       email: "andrei_popescu@romania.com"
     },
     {
-      name: "Isabella",
-      lastName: "Silva",
-      age: 26,
+      name: "Juan",
+      lastName: "Perez",
+      age: 60,
       height: 163,
       weight: 179,
       country: "Brazil",
@@ -100,7 +100,7 @@ db.usersInfo.insertMany([
       country: "Egypt",
       residencia: "Cairo",
       salary: 6500,
-      email: "mohammed.ali@egyptmail.com"
+      email: "otro@riwi.es"
     },
     {
       name: "Hans",
@@ -158,7 +158,7 @@ db.usersInfo.insertMany([
       email: "fatima.alfarsi@uaemail.com"
     },
     {
-      name: "Diego",
+      name: "Pedro",
       lastName: "Gonzalez",
       age: 31,
       height: 175,
@@ -174,8 +174,8 @@ db.usersInfo.insertMany([
       age: 29,
       height: 170,
       weight: 143,
-      country: "Ukraine",
-      residencia: "Kyiv",
+      country: "Mexico",
+      residencia: "Mexico City",
       salary: 9000,
       email: ""
     },
@@ -188,7 +188,7 @@ db.usersInfo.insertMany([
       country: "United Kingdom",
       residencia: "London",
       salary: 2000,
-      email: ""
+      email: "ejemplo@riwi.es"
     },
     {
       name: "Maria",
@@ -236,20 +236,22 @@ db.usersInfo.insertMany([
     }
   ]);
 
+  db.usersInfo2.find();
+
 //Puntos ejercicios
 //Incrementar el salario de todos los usuarios en un 10%.
 db.usersInfo.updateMany(
     {},
-    {$inc: {salary: 0.10}}
+    {$mul: {salary: 1.10}}
 );
 
 
 
 //Cambiar la ciudad de residencia de los usuarios que actualmente viven en "New York" a "Los Ángeles".
-db.usersInfo.updateMany({
-    residencia: {"New York"}
+db.usersInfo2.updateMany(
+    {residencia: "New York"},
     {$set: {residencia: "Los Ángeles"}}
-});
+);
 
 //Agregar el correo electrónico "nuevo@riwi.com" al usuario con nombre "Juan" y apellido "Perez".
 db.usersInfo2.updateOne(
@@ -273,10 +275,12 @@ db.usersInfo2.updateOne(
 );
 
 //Aumentar la altura de todos los usuarios en 5 centímetros.
-db.usersInfo2.updateOne(
+db.usersInfo2.updateMany(
     {}, 
-    {$set: {$inc: {height: 5}}}
+    {$inc: {height: 5}}
 );
+
+
 
 //Cambiar el apellido del usuario con correo electrónico "otro@riwi.net" a "González".
 db.usersInfo2.updateOne(
@@ -299,7 +303,7 @@ db.usersInfo2.updateOne(
 
 //Actualizar el correo electrónico del usuario con nombre "Pedro" a "nuevo_correo@riwi.co".
 db.usersInfo2.updateOne(
-    {name: "Andrei"},
+    {name: "Pedro"},
     {$set: {email: "nuevo_correo@riwi.co"}}
 );
 
